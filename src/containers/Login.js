@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Auth } from "../actions/loginActions";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -49,7 +50,10 @@ class Login extends Component {
     );
   };
   render() {
-    return <div className="login container">{this.renderTemplate()}</div>;
+    if (!this.props.login.isLogin) {
+      return <div className="login container">{this.renderTemplate()}</div>;
+    }
+    return <Redirect to="/profile" />;
   }
 }
 

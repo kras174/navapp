@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
   renderTemplate = () => {
@@ -7,7 +8,10 @@ class Profile extends Component {
   };
 
   render() {
-    return <React.Fragment>{this.renderTemplate()}</React.Fragment>;
+    if (this.props.login.isLogin) {
+      return <React.Fragment>{this.renderTemplate()}</React.Fragment>;
+    }
+    return <Redirect to="/login" />;
   }
 }
 

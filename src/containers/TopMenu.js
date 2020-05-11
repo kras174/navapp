@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 
 class TopMenu extends Component {
   render() {
-    const redirectTo = this.props.login.isLogin ? "/profile" : "/login";
-
     return (
       <div className="top-menu">
         <NavLink className="top-menu-link" exact to="/">
@@ -14,7 +12,7 @@ class TopMenu extends Component {
         <NavLink className="top-menu-link" to="/news">
           Новости
         </NavLink>
-        <NavLink className="top-menu-link" to={redirectTo}>
+        <NavLink className="top-menu-link" to="/profile">
           Профиль
         </NavLink>
       </div>
