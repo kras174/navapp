@@ -9,6 +9,7 @@ class Profile extends Component {
   };
 
   renderTemplate = () => {
+    console.log("Render profile!"); // Пофиксить многократный рендер
     return <h1>Личный кабинет</h1>;
   };
 

@@ -27,6 +27,7 @@ class Login extends Component {
     return false;
   };
   renderTemplate = () => {
+    console.log("Render auth!"); // Пофиксить многократный рендер
     return (
       <React.Fragment>
         <h1>Авторизация</h1>

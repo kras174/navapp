@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Приложение с навигацией</h1>
-        <strong>Версия приложения 0.1.1</strong>
+        <strong>Версия приложения 1.0.0</strong>
         <TopMenu />
       </header>
 
