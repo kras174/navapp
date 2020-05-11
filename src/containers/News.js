@@ -21,11 +21,14 @@ class News extends Component {
       return newsList.articles.map((item, index) => {
         return (
           <div className="news-item" key={index}>
-            <h2 className="news-item-title">{item.title}</h2>
+            <h2 className="news-item-title">
+              <a href={item.url}>{item.title}</a>
+            </h2>
             <div className="news-item-content">
               <img className="news-item-img" src={item.urlToImage} alt="" />
               <p className="news-item-text">{item.description}</p>
             </div>
+            <hr />
           </div>
         );
       });

@@ -10,22 +10,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.App-header p {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
 .top-menu {
   margin: 10px 5px;
   padding: 10px;
-  border: 2px solid #fff;
-  border-radius: 20px;
 }
 .top-menu-link {
   text-decoration: none;
   padding: 30px;
   color: #fff;
+  padding-bottom: 16px;
 }
 .top-menu-link:hover {
-  text-decoration: underline;
+  color: red;
+  transition: color 0.2s ease-in;
 }
 .top-menu-link.active {
   color: red;
+  border-bottom: 4px solid red;
 }
 
 .container {
@@ -40,16 +47,48 @@ code {
 .news-item {
   margin: 20px 0;
 }
-.news-item-title {
+.news-item-title a {
   margin-bottom: 50px;
+  color: #000;
+  text-decoration: none;
+}
+.news-item-title:visited {
+  color: #000;
 }
 .news-item-content {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
+}
+.news-item:nth-child(2n) .news-item-content {
+  flex-direction: row-reverse;
 }
 .news-item-text {
-  padding-left: 50px;
+  padding: 0 50px;
 }
 .news-item-img {
   max-height: 320px;
+}
+.login-form input {
+  margin: 10px;
+}
+.login-username,
+.login-password,
+.login-button {
+  margin: 0 0 5px 0;
+  padding: 5px;
+  border: 1px solid rgba(0, 89, 181, 0.82);
+}
+.login-button {
+  box-sizing: content-box;
+  color: #fff;
+  text-transform: uppercase;
+  background: #007ddc;
+}
+.login-button:disabled {
+  background: #ccc;
+  color: #999;
+}
+.error-text {
+  color: red;
 }
