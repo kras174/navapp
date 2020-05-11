@@ -10,21 +10,25 @@ export function loadNews() {
       type: NEWS_REQUEST,
     });
 
-    const API_ROOT = `http://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWSAPI}`;
+    const API_ROOT = `http://newsapi.org/v2/top-headlines?country=ru&apiKey=${NEWSAPI}`;
 
-    const response = await fetch(API_ROOT);
-    const json = await response.json();
+    try {
+      const response = await fetch(API_ROOT);
+      const json = await response.json();
 
-    if (json.status === "ok") {
-      dispatch({
-        type: NEWS_SUCCESS,
-        payload: json,
-      });
-    } else {
-      dispatch({
-        type: NEWS_ERROR,
-        payload: new Error("Ошибка загрузки"),
-      });
+      if (json.status === "ok") {
+        dispatch({
+          type: NEWS_SUCCESS,
+          payload: json,
+        });
+      } else {
+        dispatch({
+          type: NEWS_ERROR,
+          payload: new Error("Статус загрузки!"),
+        });
+      }
+    } catch {
+      throw new Error("Ошибка загрузки!");
     }
   };
 }

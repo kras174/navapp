@@ -7,22 +7,34 @@ class News extends Component {
     this.props.loadNews();
   }
   renderTemplate = () => {
-    const { newsList, isFetching } = this.props.news;
+    const { newsList, isFetching, error } = this.props.news;
     console.log("Render news!"); // Пофиксить многократный рендер
+    if (error) {
+      return <p>Во время запроса произошла ошибка, обновите страницу</p>;
+    }
+
+    if (isFetching) {
+      return <p>Загружаю...</p>;
+    }
+
     if (!isFetching && newsList.articles.length) {
-      return newsList.articles.map((item) => {
+      return newsList.articles.map((item, index) => {
         return (
-          <div className="news-item">
-            <img className="news-item-img" src={item.urlToImage} alt="" />
+          <div className="news-item" key={index}>
             <h2 className="news-item-title">{item.title}</h2>
-            <p className="news-item-description">{item.description}</p>
+            <div className="news-item-content">
+              <img className="news-item-img" src={item.urlToImage} alt="" />
+              <p className="news-item-text">{item.description}</p>
+            </div>
           </div>
         );
       });
+    } else {
+      return <h2>Новостей пока нет...</h2>;
     }
   };
   render() {
-    return <div className="news-list">{this.renderTemplate()}</div>;
+    return <div className="news-list container">{this.renderTemplate()}</div>;
   }
 }
 

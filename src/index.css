@@ -27,3 +27,29 @@ code {
 .top-menu-link.active {
   color: red;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+}
+.news-item {
+  margin: 20px 0;
+}
+.news-item-title {
+  margin-bottom: 50px;
+}
+.news-item-content {
+  display: flex;
+  justify-content: space-between;
+}
+.news-item-text {
+  padding-left: 50px;
+}
+.news-item-img {
+  max-height: 320px;
+}
