@@ -1,6 +1,7 @@
 export const LOGIN_SUCCES = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 export function Auth(login, password) {
   return (dispatch) => {
@@ -30,6 +31,13 @@ export function authError() {
   return {
     type: LOGIN_ERROR,
     payload: false,
-    error: "Ошибка авторизации!",
+    error: "Имя пользователя или пароль введены не верно",
+  };
+}
+
+export function logout() {
+  localStorage.setItem("isLogin", "false");
+  return {
+    type: LOGOUT_SUCCESS,
   };
 }

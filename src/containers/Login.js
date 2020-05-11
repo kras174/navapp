@@ -50,7 +50,9 @@ class Login extends Component {
     );
   };
   render() {
-    if (!this.props.login.isLogin) {
+    const localS = localStorage.getItem("isLogin");
+
+    if (localS === "false") {
       return <div className="login container">{this.renderTemplate()}</div>;
     }
     return <Redirect to="/profile" />;
