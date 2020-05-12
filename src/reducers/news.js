@@ -1,7 +1,7 @@
 import { NEWS_ERROR, NEWS_SUCCESS, NEWS_REQUEST } from "../actions/newsActions";
 
 const initialState = {
-  newsList: [],
+  newsList: {},
   isFetching: true,
   error: "",
 };

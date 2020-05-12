@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadNews } from "../actions/newsActions";
-import News from "../containers/News";
+import News from "../components/News";
 
-class NewsContainer extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <News news={this.props.news} loadNews={this.props.loadNews} />
-      </React.Fragment>
-    );
-  }
-}
+// class NewsContainer extends Component {
+//   render() {
+//     const { news, loadNews } = this.props;
+//     return <News newsList={news.newsList} isFetching={news.isFetching} error={news.error} loadNews={loadNews} />;
+//   }
+// }
 
 const mapStateToProps = (store) => {
   return {
-    news: store.news,
+    // news: store.news,
+    newsList: store.news.newsList,
+    isFetching: store.news.isFetching,
+    error: store.news.error,
   };
 };
 
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(News);

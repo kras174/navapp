@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-class News extends Component {
+export default class News extends Component {
   componentDidMount() {
     this.props.loadNews();
   }
   renderTemplate = () => {
-    const { newsList, isFetching, error } = this.props.news;
+    const { newsList, isFetching, error } = this.props;
     console.log("Render news!"); // Пофиксить многократный рендер
     if (error) {
       return <p>Во время запроса произошла ошибка, обновите страницу</p>;
@@ -40,4 +41,9 @@ class News extends Component {
   }
 }
 
-export default News;
+News.propTypes = {
+  newsList: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+  loadNews: PropTypes.func.isRequired,
+};
