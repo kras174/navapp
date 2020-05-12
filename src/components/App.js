@@ -1,9 +1,8 @@
 import React from "react";
-import "./App.css";
 import Login from "../containers/Login";
-import News from "../containers/News";
+import NewsContainer from "../containers/NewsContainer";
 import Profile from "../containers/Profile";
-import TopMenu from "../containers/TopMenu";
+import TopMenu from "../components/TopMenu";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
       <Switch>
         <Route path="/" exact render={() => <h1>Главная страница</h1>} />
         <Route path="/login" component={Login} />
-        <Route path="/news" component={News} />
+        <Route path="/news" component={NewsContainer} />
         <Route path="/profile" component={Profile} />
         <Redirect to={"/"} />
       </Switch>

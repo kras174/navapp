@@ -4,13 +4,13 @@ export const NEWS_REQUEST = "NEWS_REQUEST";
 export const NEWS_SUCCESS = "NEWS_SUCCESS";
 export const NEWS_ERROR = "NEWS_ERROR";
 
+const API_ROOT = `http://newsapi.org/v2/top-headlines?country=ru&apiKey=${NEWSAPI}`;
+
 export function loadNews() {
   return async function (dispatch) {
     dispatch({
       type: NEWS_REQUEST,
     });
-
-    const API_ROOT = `http://newsapi.org/v2/top-headlines?country=ru&apiKey=${NEWSAPI}`;
 
     try {
       const response = await fetch(API_ROOT);
@@ -27,8 +27,8 @@ export function loadNews() {
           payload: new Error("Статус загрузки!"),
         });
       }
-    } catch {
-      throw new Error("Ошибка загрузки!");
+    } catch (err) {
+      console.warn("Load News ", err);
     }
   };
 }

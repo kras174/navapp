@@ -10,6 +10,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #7ea8fc;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
 .App-header p {
   padding: 0;
   margin: 0;
@@ -34,21 +53,25 @@ code {
   color: red;
   border-bottom: 4px solid red;
 }
-
-.container {
+.news-list {
+  /* display: flex;
+  flex-direction: column; */
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.news-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 40px;
 }
 .news-item {
-  margin: 20px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px 1fr;
+}
+.news-item-title {
+  padding: 0 10px;
 }
 .news-item-title a {
-  margin-bottom: 50px;
   color: #000;
   text-decoration: none;
 }
@@ -56,22 +79,44 @@ code {
   color: #000;
 }
 .news-item-content {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
-}
-.news-item:nth-child(2n) .news-item-content {
-  flex-direction: row-reverse;
+  margin-bottom: 50px; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 250px 1fr;
 }
 .news-item-text {
-  padding: 0 50px;
+  text-align: justify;
+  padding: 0 10px;
+}
+.news-img-container {
+  position: relative;
 }
 .news-item-img {
-  max-height: 320px;
+  max-height: 250px;
+  max-width: 320px;
 }
-.login-form input {
-  margin: 10px;
+@media only screen and (min-device-width: 660px) and (max-device-width: 1024px) {
+  .news-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+@media only screen and (min-device-width: 320px) and (max-device-width: 660px) {
+  .news-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .top-menu-link {
+    padding: 15px;
+  }
+  .news-item-title {
+    font-size: 20px;
+  }
+  .news-item {
+    grid-template-rows: 160px 1fr;
+  }
+}
+
 .login-username,
 .login-password,
 .login-button {

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { loadNews } from "../actions/newsActions";
 
 class News extends Component {
   componentDidMount() {
@@ -14,7 +12,7 @@ class News extends Component {
     }
 
     if (isFetching) {
-      return <p>Загружаю...</p>;
+      return <h2>Загружаю...</h2>;
     }
 
     if (!isFetching && newsList.articles.length) {
@@ -25,10 +23,11 @@ class News extends Component {
               <a href={item.url}>{item.title}</a>
             </h2>
             <div className="news-item-content">
-              <img className="news-item-img" src={item.urlToImage} alt="" />
+              <div className="news-img-container">
+                <img className="news-item-img" src={item.urlToImage} alt="" />
+              </div>
               <p className="news-item-text">{item.description}</p>
             </div>
-            <hr />
           </div>
         );
       });
@@ -37,20 +36,8 @@ class News extends Component {
     }
   };
   render() {
-    return <div className="news-list container">{this.renderTemplate()}</div>;
+    return <div className="news-list">{this.renderTemplate()}</div>;
   }
 }
 
-const mapStateToProps = (store) => {
-  return {
-    news: store.news,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadNews: () => dispatch(loadNews()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(News);
+export default News;
