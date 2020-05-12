@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { logout, AuthGoogle } from "../actions/loginActions";
+import { AuthGoogle } from "../actions/loginActions";
 
 class Profile extends Component {
   onClickHandler = () => {
     this.props.authGoogle();
-    this.props.logout();
   };
 
   renderTemplate = () => {
-    console.log("Render profile!"); // Пофиксить многократный рендер
-    return <h1>Личный кабинет</h1>;
+    const { login } = this.props;
+    return (
+      <React.Fragment>
+        <h1>Личный кабинет</h1>;
+        <img src={login.avatar} alt="avatar" />
+        <p>Привет, {login.userName}</p>
+      </React.Fragment>
+    );
   };
 
   render() {
@@ -33,13 +38,11 @@ class Profile extends Component {
 const mapStateToProps = (store) => {
   return {
     login: store.login,
-    profile: store.profile,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => dispatch(logout()),
     authGoogle: (isLogin) => dispatch(AuthGoogle(isLogin)),
   };
 };
