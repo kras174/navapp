@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { logout } from "../actions/loginActions";
+import { logout, AuthGoogle } from "../actions/loginActions";
 
 class Profile extends Component {
   onClickHandler = () => {
+    this.props.authGoogle();
     this.props.logout();
   };
 
@@ -14,9 +15,8 @@ class Profile extends Component {
   };
 
   render() {
-    const localS = localStorage.getItem("isLogin");
-
-    if (localS === "true") {
+    const { login } = this.props;
+    if (login.isLogin) {
       return (
         <React.Fragment>
           {this.renderTemplate()}{" "}
@@ -40,6 +40,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
+    authGoogle: (isLogin) => dispatch(AuthGoogle(isLogin)),
   };
 };
 

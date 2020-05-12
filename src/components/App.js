@@ -7,7 +7,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container">
       <header className="App-header">
         <h1 className="App-title">Приложение с навигацией</h1>
         <strong>Версия приложения 1.0.0</strong>
@@ -17,8 +17,8 @@ function App() {
       <Switch>
         <Route path="/" exact render={() => <h1>Главная страница</h1>} />
         <Route path="/login" component={Login} />
-        <Route path="/news" component={NewsContainer} />
         <Route path="/profile" component={Profile} />
+        <Route path="/news" component={NewsContainer} />
         <Redirect to={"/"} />
       </Switch>
     </div>

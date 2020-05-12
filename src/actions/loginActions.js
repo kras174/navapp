@@ -3,40 +3,54 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
+export const LOGIN_GOOGLE_REQUEST = "LOGIN_GOOGLE_REQUEST";
+export const LOGIN_GOOGLE_SUCCESS = "LOGIN_GOOGLE_SUCCESS";
+export const LOGOUT_GOOGLE_SUCCES = "LOGOUT_GOOGLE_SUCCES";
+
 export function Auth(login, password) {
   return (dispatch) => {
-    dispatch(authRequest());
+    dispatch({ type: LOGIN_REQUEST });
     if (login === "Admin" && password === "12345") {
-      localStorage.setItem("isLogin", "true");
-      dispatch(authSuccess());
+      dispatch({
+        type: LOGIN_SUCCES,
+        payload: true,
+      });
     } else {
-      dispatch(authError());
+      dispatch({
+        type: LOGIN_ERROR,
+        payload: false,
+        error: "Имя пользователя или пароль введены не верно",
+      });
     }
   };
 }
-export function authRequest() {
-  return {
-    type: LOGIN_REQUEST,
-  };
-}
 
-export function authSuccess() {
-  return {
-    type: LOGIN_SUCCES,
-    payload: true,
-  };
-}
-
-export function authError() {
-  return {
-    type: LOGIN_ERROR,
-    payload: false,
-    error: "Имя пользователя или пароль введены не верно",
+export function AuthGoogle() {
+  return (dispatch, getState) => {
+    const { isLogin } = getState().login;
+    console.log("getState!!!!!!!!!!" + isLogin);
+    dispatch({ type: LOGIN_GOOGLE_REQUEST });
+    const auth2 = window.gapi.auth2.getAuthInstance();
+    if (!isLogin) {
+      auth2.signIn().then((googleUser) => {
+        const profile = googleUser.getBasicProfile();
+        dispatch({
+          type: LOGIN_GOOGLE_SUCCESS,
+          payload: {
+            userName: profile.getName(),
+            avatar: profile.getImageUrl(),
+          },
+        });
+      });
+    } else {
+      auth2.signOut().then(() => {
+        dispatch({ type: LOGOUT_GOOGLE_SUCCES });
+      });
+    }
   };
 }
 
 export function logout() {
-  localStorage.setItem("isLogin", "false");
   return {
     type: LOGOUT_SUCCESS,
   };
